@@ -20,6 +20,7 @@ public class NotificationCommandHandler {
         String type = value(args, "--type"), recipient = value(args, "--recipient");
         String subject = value(args, "--subject"), message = value(args, "--message");
         Notification notification;
+
         // TODO: Replace this construction switch with Factory Method creators.
         if ("email".equals(type)) notification = new EmailNotification(recipient, subject, message);
         else if ("sms".equals(type)) notification = new SmsNotification(recipient, message);
@@ -29,7 +30,9 @@ public class NotificationCommandHandler {
     }
 
     private String value(String[] args, String key) {
-        for (int i = 0; i < args.length - 1; i++) if (key.equals(args[i])) return args[i + 1];
+        for (int i = 0; i < args.length - 1; i++)
+            if (key.equals(args[i]))
+                return args[i + 1];
         return "";
     }
 }
